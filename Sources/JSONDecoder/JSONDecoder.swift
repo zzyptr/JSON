@@ -4,7 +4,7 @@ public struct JSONDecoder {
 
     @inlinable
     public static func decode<T: Decodable>(from json: JSON, userInfo: [CodingUserInfoKey: Any]) throws -> T {
-        let container = Container(
+        let container = SingleValueContainer(
             content: json,
             codingPath: [],
             userInfo: userInfo
@@ -14,7 +14,7 @@ public struct JSONDecoder {
 
     @inlinable
     public static func decode<T: Decodable>(from json: JSON) throws -> T {
-        let container = Container(
+        let container = SingleValueContainer(
             content: json,
             codingPath: [],
             userInfo: [:]
@@ -24,7 +24,7 @@ public struct JSONDecoder {
 
     @inlinable
     public static func decode<T: Decodable>(_ type: T.Type, from json: JSON, userInfo: [CodingUserInfoKey: Any]) throws -> T {
-        let container = Container(
+        let container = SingleValueContainer(
             content: json,
             codingPath: [],
             userInfo: userInfo
@@ -34,7 +34,7 @@ public struct JSONDecoder {
 
     @inlinable
     public static func decode<T: Decodable>(_ type: T.Type, from json: JSON) throws -> T {
-        let container = Container(
+        let container = SingleValueContainer(
             content: json,
             codingPath: [],
             userInfo: [:]
@@ -42,4 +42,3 @@ public struct JSONDecoder {
         return try T(from: container)
     }
 }
-

@@ -107,7 +107,7 @@ extension UnkeyedContainer: UnkeyedDecodingContainer {
     mutating func decode<T>(_ type: T.Type) throws -> T where T: Decodable {
         let json = content[currentIndex]
         if let t = json as? T { return t }
-        let container = Container(
+        let container = SingleValueContainer(
             content: json,
             codingPath: codingPath + [currentKey],
             userInfo: userInfo
@@ -152,7 +152,7 @@ extension UnkeyedContainer: UnkeyedDecodingContainer {
 
     @inlinable
     mutating func superDecoder() throws -> Decoder {
-        return Container(
+        return SingleValueContainer(
             content: content[currentIndex],
             codingPath: codingPath + [currentKey],
             userInfo: userInfo
@@ -186,4 +186,3 @@ extension UnkeyedContainer: UnkeyedDecodingContainer {
         }
     }
 }
-

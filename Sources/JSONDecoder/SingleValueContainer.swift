@@ -1,7 +1,7 @@
 import JSON
 
 @usableFromInline
-struct Container {
+struct SingleValueContainer {
 
     @usableFromInline
     let content: JSON
@@ -20,7 +20,7 @@ struct Container {
     }
 }
 
-extension Container: SingleValueDecodingContainer {
+extension SingleValueContainer: SingleValueDecodingContainer {
 
     @inlinable
     func decodeNil() -> Bool {
@@ -87,7 +87,7 @@ extension Container: SingleValueDecodingContainer {
     }
 }
 
-extension Container: Decoder {
+extension SingleValueContainer: Decoder {
 
     @inlinable
     func singleValueContainer() throws -> SingleValueDecodingContainer {

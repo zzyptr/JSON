@@ -107,7 +107,7 @@ extension KeyedContainer: KeyedDecodingContainerProtocol {
             throw DecodingError.keyNotFound(key, codingPath)
         case let .some(json):
             if let t = json as? T { return t }
-            let container = Container(
+            let container = SingleValueContainer(
                 content: json,
                 codingPath: codingPath + [key],
                 userInfo: userInfo
@@ -167,7 +167,7 @@ extension KeyedContainer: KeyedDecodingContainerProtocol {
         case .none:
             throw DecodingError.keyNotFound(key, codingPath)
         case let .some(json):
-            return Container(
+            return SingleValueContainer(
                 content: json,
                 codingPath: codingPath + [key],
                 userInfo: userInfo
@@ -175,4 +175,3 @@ extension KeyedContainer: KeyedDecodingContainerProtocol {
         }
     }
 }
-
